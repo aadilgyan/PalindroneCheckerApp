@@ -1,37 +1,35 @@
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
-        // Input string
+        // Hardcoded input string
         String input = "madam";
 
-        // Create Queue and Stack
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        // Create Deque
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Add characters to queue and stack
-        for (char ch : input.toCharArray()) {
-            queue.add(ch);   // Enqueue
-            stack.push(ch);  // Push
+        // Insert characters into deque
+        for (int i = 0; i < input.length(); i++) {
+            deque.addLast(input.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Compare dequeue and pop
-        while (!queue.isEmpty()) {
+        // Compare front and rear characters
+        while (deque.size() > 1) {
 
-            char fromQueue = queue.remove(); // Dequeue
-            char fromStack = stack.pop();    // Pop
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
 
-            if (fromQueue != fromStack) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Display input
+        // Print input
         System.out.println("Input text: " + input);
 
-        // Display result
+        // Print result
         if (isPalindrome) {
             System.out.println("Is it a Palindrome? : true");
         } else {
