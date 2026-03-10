@@ -1,75 +1,29 @@
 public class PalindromeCheckerApp {
-    // Node class for Linked List
-    static class Node {
-        char data;
-        Node next;
+    public static boolean isPalindrome(String str, int start, int end) {
 
-        Node(char data) {
-            this.data = data;
-            this.next = null;
+        // Base condition
+        if (start >= end) {
+            return true;
         }
+
+        // If characters don't match
+        if (str.charAt(start) != str.charAt(end)) {
+            return false;
+        }
+
+        // Recursive call
+        return isPalindrome(str, start + 1, end - 1);
     }
 
     public static void main(String[] args) {
 
         String input = "madam";
 
-        // Convert string to linked list
-        Node head = null;
-        Node tail = null;
+        boolean result = isPalindrome(input, 0, input.length() - 1);
 
-        for (char c : input.toCharArray()) {
-            Node newNode = new Node(c);
-
-            if (head == null) {
-                head = newNode;
-                tail = newNode;
-            } else {
-                tail.next = newNode;
-                tail = newNode;
-            }
-        }
-
-        // Find middle using fast and slow pointers
-        Node slow = head;
-        Node fast = head;
-
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-
-        // Reverse second half
-        Node prev = null;
-        Node current = slow;
-
-        while (current != null) {
-            Node next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
-        }
-
-        // Compare halves
-        Node firstHalf = head;
-        Node secondHalf = prev;
-
-        boolean isPalindrome = true;
-
-        while (secondHalf != null) {
-            if (firstHalf.data != secondHalf.data) {
-                isPalindrome = false;
-                break;
-            }
-
-            firstHalf = firstHalf.next;
-            secondHalf = secondHalf.next;
-        }
-
-        // Print result
         System.out.println("Input text: " + input);
 
-        if (isPalindrome) {
+        if (result) {
             System.out.println("Is it a Palindrome? : true");
         } else {
             System.out.println("Is it a Palindrome? : false");
