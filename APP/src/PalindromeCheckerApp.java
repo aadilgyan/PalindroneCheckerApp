@@ -1,33 +1,37 @@
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
-        // Hardcoded input string
+        // Input string
         String input = "madam";
 
-        // Convert string to character array
-        char[] characters = input.toCharArray();
+        // Create Queue and Stack
+        Queue<Character> queue = new LinkedList<>();
+        Stack<Character> stack = new Stack<>();
 
-        int start = 0;
-        int end = characters.length - 1;
+        // Add characters to queue and stack
+        for (char ch : input.toCharArray()) {
+            queue.add(ch);   // Enqueue
+            stack.push(ch);  // Push
+        }
 
         boolean isPalindrome = true;
 
-        // Two-pointer comparison
-        while (start < end) {
+        // Compare dequeue and pop
+        while (!queue.isEmpty()) {
 
-            if (characters[start] != characters[end]) {
+            char fromQueue = queue.remove(); // Dequeue
+            char fromStack = stack.pop();    // Pop
+
+            if (fromQueue != fromStack) {
                 isPalindrome = false;
                 break;
             }
-
-            start++;
-            end--;
         }
 
-        // Print input
+        // Display input
         System.out.println("Input text: " + input);
 
-        // Print result
+        // Display result
         if (isPalindrome) {
             System.out.println("Is it a Palindrome? : true");
         } else {
