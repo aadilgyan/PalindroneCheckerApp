@@ -1,21 +1,21 @@
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
-        // Input string
+        // Hardcoded input string
         String input = "madam";
 
         // Convert string to character array
-        char[] chars = input.toCharArray();
+        char[] characters = input.toCharArray();
 
         int start = 0;
-        int end = chars.length - 1;
+        int end = characters.length - 1;
 
         boolean isPalindrome = true;
 
         // Two-pointer comparison
         while (start < end) {
 
-            if (chars[start] != chars[end]) {
+            if (characters[start] != characters[end]) {
                 isPalindrome = false;
                 break;
             }
@@ -24,10 +24,10 @@ public class PalindromeCheckerApp {
             end--;
         }
 
-        // Display input
+        // Print input
         System.out.println("Input text: " + input);
 
-        // Display result
+        // Print result
         if (isPalindrome) {
             System.out.println("Is it a Palindrome? : true");
         } else {
